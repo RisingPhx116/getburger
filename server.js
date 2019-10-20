@@ -6,7 +6,7 @@ var app = express();
 
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8081;
 
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
@@ -44,7 +44,7 @@ app.get("/", function(req, res) {
 });
 
 // Create a new plan
-app.post("/api/movies", function(req, res) {
+app.post("/api/burgers", function(req, res) {
   connection.query("INSERT INTO burgers (burger) VALUES (?)", [req.body.burger], function(err, result) {
     if (err) {
       return res.status(500).end();
@@ -73,8 +73,8 @@ app.put("/api/burgers/:id", function(req, res) {
 });
 
 // Delete a plan
-app.delete("/api/movies/:id", function(req, res) {
-  connection.query("DELETE FROM movies WHERE id = ?", [req.params.id], function(err, result) {
+app.delete("/api/burgers/:id", function(req, res) {
+  connection.query("DELETE FROM burgers WHERE id = ?", [req.params.id], function(err, result) {
     if (err) {
       // If an error occurred, send a generic server failure
       return res.status(500).end();
